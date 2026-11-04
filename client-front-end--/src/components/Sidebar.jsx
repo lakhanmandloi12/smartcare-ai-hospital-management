@@ -98,7 +98,14 @@ function Sidebar() {
                 </NavLink>
 
             </nav>
-
+            <nav>
+                <NavLink to="/settings" className={({ isActive }) =>
+                    `sidebar-link ${isActive ? "active" : ""}`
+                }>
+                    <i className="bi bi-gear-fill"></i>
+                    Settings
+                </NavLink>
+            </nav>
 
             <div className="menu-title mt-4">
                 SMART TOOLS
@@ -116,15 +123,15 @@ function Sidebar() {
                     AI Assistant
                 </NavLink>
 
+
             </nav>
+
 
 
             <div className="sidebar-bottom">
 
-                <a className="sidebar-link">
-                    <i className="bi bi-gear-fill"></i>
-                    Settings
-                </a>
+
+
 
                 <a className="sidebar-link">
                     <i className="bi bi-box-arrow-right"></i>

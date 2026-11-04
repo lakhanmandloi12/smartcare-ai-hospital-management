@@ -1,3 +1,4 @@
+import PendingDoctors from "../components/PendingDoctors";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 
@@ -55,7 +56,7 @@ function Doctors() {
                             <h2 className="fw-bold mb-1">
                                 Doctors
                             </h2>
-
+                            <PendingDoctors />
                             <p className="text-muted">
                                 Manage hospital doctors and departments.
                             </p>
