@@ -6,7 +6,7 @@ import api from "./pages/services/api";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
-import DoctorDashboard from "./pages/DoctorDashboard";
+
 import Settings from "./pages/Settings";
 import Patients from "./pages/Patients";
 import Doctors from "./pages/Doctors";
@@ -23,6 +23,13 @@ import PatientAppointments from "./pages/PatientAppointments";
 import PatientRecords from "./pages/PatientRecords";
 import PatientProfile from "./pages/PatientProfile";
 import PatientAI from "./pages/PatientAi";
+
+import DoctorLayout from "./doctor/DoctorLayout";
+import DoctorDashboard from "./doctor/DoctorDashboard";
+import DoctorAppointments from "./doctor/DoctorAppointments";
+import DoctorPatients from "./doctor/DoctorPatients";
+import DoctorRecords from "./doctor/DoctorRecords";
+import DoctorProfile from "./doctor/DoctorProfile";
 
 const roleHome = {
   patient: "/patient",
@@ -119,10 +126,17 @@ function App() {
           path="/doctor"
           element={
             <ProtectedRoute allowedRoles={["doctor"]}>
-              <DoctorDashboard />
+              <DoctorLayout />
             </ProtectedRoute>
           }
-        />
+        >
+          <Route index element={<DoctorDashboard />} />
+          <Route path="appointments" element={<DoctorAppointments />} />
+          <Route path="patients" element={<DoctorPatients />} />
+          <Route path="records" element={<DoctorRecords />} />
+          <Route path="profile" element={<DoctorProfile />} />
+        </Route>
+
 
         {/* ===== Admin ===== */}
         <Route

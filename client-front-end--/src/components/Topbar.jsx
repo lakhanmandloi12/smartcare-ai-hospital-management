@@ -1,7 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 
+import { useLocation } from "react-router-dom";
 import api from "../pages/services/api"; // services folder src/ mein hai to "../services/api"
 import "./Topbar.css"
+
+const NOTIFICATIONS = {
+    doctor: [
+        "New appointment........",
+        "Lab record available..",
+    ],
+    patient: [
+        "Your appointement tommorrow at 11PM",
+        "Prescription updated...",
+    ],
+    admin: [
+        "New doctor registration pending..",
+        "3 appointment requested..",
+    ],
+};
+
 function getStoredUser() {
     try {
         return JSON.parse(localStorage.getItem("smartcareUser")) || {};
@@ -21,6 +38,36 @@ function Topbar() {
     const [user, setUser] = useState(getStoredUser());
     const wrapRef = useRef(null);
 
+    // ---- Notification state (profile menu se alag) ----
+    const [notifOpen, setNotifOpen] = useState(false);
+    const notifRef = useRef(null);
+    const { pathname } = useLocation();
+
+    // Role: pehle URL se, nahi mila to logged-in user ke role se
+    const role = pathname.includes("/doctor")
+        ? "doctor"
+        : pathname.includes("/admin")
+            ? "admin"
+            : pathname.includes("/patient")
+                ? "patient"
+                : user.role || "patient";
+
+    const items = NOTIFICATIONS[role] || [];
+
+    // page badalne par notification dropdown band
+    useEffect(() => {
+        setNotifOpen(false);
+    }, [pathname]);
+
+    // bahar click par notification dropdown band
+    useEffect(() => {
+        function onClick(e) {
+            if (notifRef.current && !notifRef.current.contains(e.target)) setNotifOpen(false);
+        }
+        document.addEventListener("mousedown", onClick);
+        return () => document.removeEventListener("mousedown", onClick);
+    }, []);
+
     // Backend se poori details lao (phone, joined date, etc.)
     useEffect(() => {
         api.get("/auth/me")
@@ -34,7 +81,10 @@ function Topbar() {
             if (wrapRef.current && !wrapRef.current.contains(e.target)) setOpen(false);
         }
         function onKey(e) {
-            if (e.key === "Escape") setOpen(false);
+            if (e.key === "Escape") {
+                setOpen(false);
+                setNotifOpen(false);
+            }
         }
         document.addEventListener("mousedown", onClick);
         document.addEventListener("keydown", onKey);
@@ -71,10 +121,31 @@ function Topbar() {
             </div>
 
             <div className="topbar-right">
-                <button className="notification-btn">
-                    <i className="bi bi-bell"></i>
-                    <span></span>
-                </button>
+                <div className="notification-wrap" ref={notifRef}>
+                    <button
+                        className="notification-btn"
+                        onClick={() => {
+                            setNotifOpen((o) => !o);
+                            setOpen(false);
+                        }}
+                    >
+                        <i className="bi bi-bell"></i>
+                        {items.length > 0 && <span>{items.length}</span>}
+                    </button>
+
+                    {notifOpen && (
+                        <div className="notification-dropdown">
+                            <h6>{role.toUpperCase()} Notifications</h6>
+                            {items.length === 0 ? (
+                                <p>Koi notification nahi</p>
+                            ) : (
+                                items.map((n, i) => (
+                                    <div key={i} className="notification-item">{n}</div>
+                                ))
+                            )}
+                        </div>
+                    )}
+                </div>
 
                 <div className="profile-wrap" ref={wrapRef}>
                     <div
@@ -83,7 +154,10 @@ function Topbar() {
                         tabIndex={0}
                         aria-haspopup="menu"
                         aria-expanded={open}
-                        onClick={() => setOpen((o) => !o)}
+                        onClick={() => {
+                            setOpen((o) => !o);
+                            setNotifOpen(false);
+                        }}
                         onKeyDown={(e) => {
                             if (e.key === "Enter" || e.key === " ") {
                                 e.preventDefault();

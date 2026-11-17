@@ -1,6 +1,6 @@
 const MedicalRecord = require("../models/MedicalRecord");
 const User = require("../models/User");
-
+const Appointment = require("../models/Appointment");
 // Patient ko apne records, doctor ko apne likhe hue
 exports.getMyRecords = async (req, res) => {
     try {
@@ -27,7 +27,9 @@ exports.createRecord = async (req, res) => {
 
         const patient = await User.findOne({ _id: patientId, role: "patient" });
         if (!patient) return res.status(404).json({ message: "Patient nahi mila" });
-
+        const treated = await Appointment.exists({ doctor: req.user._id, patient: patient._id });
+        if (!treated)
+            return res.status(403).json({ message: "Aap sirf apne patients ke liye record likh sakte hain" });
         const record = await MedicalRecord.create({
             patient: patient._id,
             doctor: req.user._id,

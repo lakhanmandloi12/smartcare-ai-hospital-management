@@ -308,3 +308,39 @@
         transition: none;
     }
 }
+
+.notification-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.notification-btn {
+    position: relative;
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+
+.notification-dropdown {
+    position: absolute;
+    right: 0;
+    top: 120%;
+    width: 280px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .15);
+    padding: 10px;
+    z-index: 1000;
+}
+
+.notification-item {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}

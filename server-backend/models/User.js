@@ -25,6 +25,8 @@ const userSchema = new mongoose.Schema(
 
         // Doctor ke liye register par false hota hai, admin approve karta hai
         isApproved: { type: Boolean, default: true },
+        bio: { type: String, trim: true, maxlength: 500 },
+        consultationFee: Number,
     },
     { timestamps: true }
 );

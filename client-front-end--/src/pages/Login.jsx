@@ -56,15 +56,13 @@ function Login() {
     }
 
     async function handleGoogle(response) {
-        {
-            notice && (
-                <div className="sc-success" role="status">
-                    <i className="bi bi-check-circle"></i>
-                    <span>{notice}</span>
-                </div>
-            )
-        }
         setError("");
+
+        if (!response?.credential) {
+            setError("Google se credential nahi mila. Dobara try karo.");
+            return;
+        }
+
         try {
             const { data } = await api.post("/auth/google", {
                 credential: response.credential,
@@ -89,6 +87,13 @@ function Login() {
 
                     <h2 className="sc-title">Welcome back</h2>
                     <p className="sc-sub">Sign in to open your dashboard.</p>
+
+                    {notice && (
+                        <div className="sc-success" role="status">
+                            <i className="bi bi-check-circle"></i>
+                            <span>{notice}</span>
+                        </div>
+                    )}
 
                     <form onSubmit={handleSubmit} className="sc-form">
                         {error && (
