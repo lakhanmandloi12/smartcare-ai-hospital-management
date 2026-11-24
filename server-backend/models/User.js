@@ -27,6 +27,7 @@ const userSchema = new mongoose.Schema(
         isApproved: { type: Boolean, default: true },
         bio: { type: String, trim: true, maxlength: 500 },
         consultationFee: Number,
+        isActive: { type: Boolean, default: true },
     },
     { timestamps: true }
 );

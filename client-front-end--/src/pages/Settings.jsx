@@ -12,7 +12,6 @@ const defaultSettings = {
     address: "Indore, Madhya Pradesh",
     notifications: true,
     emailAlerts: true,
-    darkMode: false,
 };
 
 const preferenceItems = [
@@ -26,18 +25,14 @@ const preferenceItems = [
         label: "Email alerts",
         hint: "Send important updates to the hospital email address.",
     },
-    {
-        name: "darkMode",
-        label: "Dark mode",
-        hint: "Use a darker color theme across the dashboard.",
-    },
 ];
 
 // Pehle se save ki hui settings load karo (default ke upar merge)
 function loadSettings() {
     try {
-        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-        return { ...defaultSettings, ...(saved || {}) };
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+        delete saved.darkMode; // purani dark mode setting ab topbar ke toggle se chalti hai
+        return { ...defaultSettings, ...saved };
     } catch {
         return defaultSettings;
     }
@@ -46,14 +41,6 @@ function loadSettings() {
 function Settings() {
     const [settings, setSettings] = useState(loadSettings);
     const [saved, setSaved] = useState(false);
-
-    // Dark mode Bootstrap 5.3 ke data-bs-theme se chalta hai
-    useEffect(() => {
-        document.documentElement.setAttribute(
-            "data-bs-theme",
-            settings.darkMode ? "dark" : "light"
-        );
-    }, [settings.darkMode]);
 
     // Success message 3 second baad apne aap hat jaye
     useEffect(() => {
@@ -237,13 +224,14 @@ function Settings() {
 
                                 <p className="pref-note">
                                     Preferences "Save changes" dabane par save hoti hain.
+                                    Light / dark theme ke liye upar topbar ka sun-moon button use karo.
                                 </p>
                             </div>
                         </div>
 
                         <div className="col-lg-4">
                             <div className="card settings-card p-4 text-center">
-                                <div className="brand-icon">
+                                <div className="settings-brand-icon">
                                     <i className="bi bi-hospital"></i>
                                 </div>
                                 <h5 className="fw-bold mt-3 mb-1">

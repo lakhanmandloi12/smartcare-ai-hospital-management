@@ -53,10 +53,10 @@ function Billing() {
                             </p>
                         </div>
 
-                        <button className="btn btn-primary">
+                        {/* <button className="btn btn-primary">
                             <i className="bi bi-plus-lg me-2"></i>
                             Create Invoice
-                        </button>
+                        </button> */}
 
                     </div>
 

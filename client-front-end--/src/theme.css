@@ -72,3 +72,244 @@ body {
     color: var(--app-text);
     transition: background 0.2s, color 0.2s;
 }
+
+/* ================= App-wide overrides =================
+   Ye un components ke liye hain jinki apni CSS me hardcoded colors the
+   (Dashboard, Sidebar, Topbar). Class names apne project ke hisaab se check karo.
+   Behtar: un CSS files me bhi #fff / white ko var(--app-surface) se replace kar do,
+   phir ye block hata sakte ho. */
+
+.app-layout,
+.main-content,
+.dashboard-content {
+    background: var(--app-bg);
+    color: var(--app-text);
+}
+
+.sidebar,
+.topbar,
+.dashboard-card,
+.stat-card {
+    background: var(--app-surface);
+    color: var(--app-text);
+    border-color: var(--app-border);
+}
+
+.appointment-row {
+    color: var(--app-text);
+    border-color: var(--app-border-soft);
+}
+
+.appointment-row:hover {
+    background: var(--app-hover);
+}
+
+.doctor-avatar,
+.appointment-time {
+    background: var(--app-primary-soft);
+    color: var(--app-primary);
+}
+
+.text-muted,
+.pt-muted {
+    color: var(--app-muted) !important;
+}
+
+.sidebar a,
+.topbar a {
+    color: var(--app-text-soft);
+}
+
+html[data-bs-theme="dark"] .pt-card {
+    background: var(--app-surface);
+    color: var(--app-text);
+    border-color: var(--app-border);
+}
+
+html[data-bs-theme="dark"] .pt-card input,
+html[data-bs-theme="dark"] .pt-card select,
+html[data-bs-theme="dark"] .pt-card textarea {
+    background: var(--app-bg-soft);
+    color: var(--app-text);
+    border-color: var(--app-border);
+}
+
+html[data-bs-theme="dark"] .pt-card input:disabled {
+    background: var(--app-soft);
+    color: var(--app-muted);
+}
+
+html[data-bs-theme="dark"] .pt-header h2,
+html[data-bs-theme="dark"] .pt-card label,
+html[data-bs-theme="dark"] .pt-card h5 {
+    color: var(--app-text);
+}
+
+html[data-bs-theme="dark"] .pt-muted,
+html[data-bs-theme="dark"] .pt-header p,
+html[data-bs-theme="dark"] .pt-switch-row small {
+    color: var(--app-muted);
+}
+
+/* ================= Bootstrap ko app ke dark colours se jodo ================= */
+[data-bs-theme="dark"] {
+    --bs-body-bg: var(--app-surface);
+    /* cards, modals, inputs, tables */
+    --bs-body-color: var(--app-text);
+    --bs-secondary-color: var(--app-muted);
+    /* .text-muted */
+    --bs-border-color: var(--app-border);
+    --bs-tertiary-bg: var(--app-soft);
+    /* input-group-text, etc. */
+    --bs-secondary-bg: var(--app-soft);
+    --bs-emphasis-color: #ffffff;
+    --bs-link-color: var(--app-primary);
+}
+
+/* body ka apna background (cards se alag, thoda gehra) */
+body {
+    background: var(--app-bg);
+    color: var(--app-text);
+}
+
+[data-bs-theme="dark"] .bg-white {
+    background-color: var(--app-surface) !important;
+}
+
+[data-bs-theme="dark"] .bg-light {
+    background-color: var(--app-soft) !important;
+}
+
+[data-bs-theme="dark"] .btn-light {
+    --bs-btn-color: var(--app-text);
+    --bs-btn-bg: var(--app-soft);
+    --bs-btn-border-color: var(--app-border);
+    --bs-btn-hover-color: var(--app-text);
+    --bs-btn-hover-bg: var(--app-border);
+    --bs-btn-hover-border-color: var(--app-border);
+    --bs-btn-active-color: var(--app-text);
+    --bs-btn-active-bg: var(--app-border);
+    --bs-btn-active-border-color: var(--app-border);
+}
+
+[data-bs-theme="dark"] .form-control::placeholder {
+    color: var(--app-faint);
+}
+
+[data-bs-theme="dark"] .modal-content {
+    border: 1px solid var(--app-border);
+}
+
+/* ================= Theme badalte waqt smooth fade ================= */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+    transition: background-color 0.3s ease, color 0.3s ease,
+        border-color 0.3s ease, box-shadow 0.3s ease, fill 0.3s ease !important;
+}
+
+/* ================= Sun / moon toggle ================= */
+.theme-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60px;
+    height: 32px;
+    padding: 0 9px;
+    border: 1px solid var(--app-border);
+    border-radius: 999px;
+    background: linear-gradient(135deg, #dbeafe, #fef3c7);
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s;
+}
+
+[data-bs-theme="dark"] .theme-toggle {
+    background: linear-gradient(135deg, #1e293b, #312e81);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--app-primary);
+    outline-offset: 3px;
+}
+
+/* track ke andar halke icons */
+.theme-toggle-bg-sun,
+.theme-toggle-bg-moon {
+    font-size: 13px;
+    opacity: 0.55;
+}
+
+.theme-toggle-bg-sun {
+    color: #f59e0b;
+}
+
+.theme-toggle-bg-moon {
+    color: #94a3b8;
+}
+
+/* sarakne wala gola */
+.theme-toggle-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.3);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s;
+}
+
+[data-bs-theme="dark"] .theme-toggle-knob {
+    transform: translateX(28px);
+    background: #0f172a;
+}
+
+.theme-toggle-knob i {
+    grid-area: 1 / 1;
+    font-size: 13px;
+    transition: opacity 0.25s, transform 0.3s;
+}
+
+.theme-toggle-sun {
+    color: #f59e0b;
+    opacity: 1;
+}
+
+.theme-toggle-moon {
+    color: #c7d2fe;
+    opacity: 0;
+    transform: rotate(-40deg) scale(0.6);
+}
+
+[data-bs-theme="dark"] .theme-toggle-sun {
+    opacity: 0;
+    transform: rotate(40deg) scale(0.6);
+}
+
+[data-bs-theme="dark"] .theme-toggle-moon {
+    opacity: 1;
+    transform: none;
+}
+
+/* fade ke waqt bhi knob ki apni animation chalti rahe */
+.theme-transition .theme-toggle-knob {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s !important;
+}
+
+.theme-transition .theme-toggle-knob i {
+    transition: opacity 0.25s, transform 0.3s !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .theme-toggle,
+    .theme-toggle-knob,
+    .theme-toggle-knob i {
+        transition: none;
+    }
+}

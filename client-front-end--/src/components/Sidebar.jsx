@@ -133,10 +133,7 @@ function Sidebar() {
 
 
 
-                <a className="sidebar-link">
-                    <i className="bi bi-box-arrow-right"></i>
-                    Logout
-                </a>
+
 
             </div>
 

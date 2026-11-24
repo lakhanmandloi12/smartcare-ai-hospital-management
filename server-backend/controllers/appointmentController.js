@@ -132,3 +132,97 @@ exports.updateStatus = async (req, res) => {
         res.status(400).json({ message: "Invalid appointment id" });
     }
 };
+/* ================= Admin ================= */
+const todayUTC = () => new Date(new Date().toLocaleDateString("en-CA"));
+const POPULATE = [
+    { path: "doctor", select: "name specialization" },
+    { path: "patient", select: "name email phone" },
+];
+
+// Admin kisi patient ke liye appointment banata hai
+exports.adminCreate = async (req, res) => {
+    try {
+        const { patientId, doctorId, date, time, reason, status } = req.body;
+
+        if (!patientId || !doctorId || !date || !time)
+            return res.status(400).json({ message: "Patient, doctor, date aur time zaroori hain" });
+        if (!/^\d{2}:\d{2}$/.test(time))
+            return res.status(400).json({ message: "Time format HH:MM hona chahiye" });
+
+        const day = new Date(date);
+        if (isNaN(day)) return res.status(400).json({ message: "Invalid date" });
+        if (day < todayUTC()) return res.status(400).json({ message: "Purani date par booking nahi ho sakti" });
+
+        const patient = await User.findOne({ _id: patientId, role: "patient", isActive: { $ne: false } });
+        if (!patient) return res.status(404).json({ message: "Patient nahi mila ya inactive hai" });
+
+        const doctor = await User.findOne({ _id: doctorId, role: "doctor", isApproved: true });
+        if (!doctor) return res.status(404).json({ message: "Doctor nahi mila" });
+
+        const taken = await Appointment.findOne({
+            doctor: doctor._id,
+            date: day,
+            time,
+            status: { $in: ACTIVE },
+        });
+        if (taken) return res.status(409).json({ message: "Ye slot pehle se booked hai" });
+
+        const appointment = await Appointment.create({
+            patient: patient._id,
+            doctor: doctor._id,
+            date: day,
+            time,
+            reason,
+            status: ["pending", "confirmed"].includes(status) ? status : "confirmed",
+        });
+        await appointment.populate(POPULATE);
+
+        res.status(201).json({ appointment });
+    } catch (e) {
+        res.status(400).json({ message: "Appointment nahi ban payi: " + e.message });
+    }
+};
+
+// Admin status badalta hai ya reschedule karta hai
+exports.adminUpdate = async (req, res) => {
+    try {
+        const { status, date, time } = req.body;
+        const appointment = await Appointment.findById(req.params.id);
+        if (!appointment) return res.status(404).json({ message: "Appointment nahi mili" });
+
+        if (status !== undefined) {
+            if (!["pending", "confirmed", "completed", "cancelled"].includes(status))
+                return res.status(400).json({ message: "Invalid status" });
+            appointment.status = status;
+        }
+        if (date !== undefined) {
+            const day = new Date(date);
+            if (isNaN(day)) return res.status(400).json({ message: "Invalid date" });
+            if (day < todayUTC()) return res.status(400).json({ message: "Purani date par reschedule nahi ho sakta" });
+            appointment.date = day;
+        }
+        if (time !== undefined) {
+            if (!/^\d{2}:\d{2}$/.test(time))
+                return res.status(400).json({ message: "Time format HH:MM hona chahiye" });
+            appointment.time = time;
+        }
+
+        // Active appointment ke liye slot double-book na ho
+        if (ACTIVE.includes(appointment.status)) {
+            const clash = await Appointment.findOne({
+                _id: { $ne: appointment._id },
+                doctor: appointment.doctor,
+                date: appointment.date,
+                time: appointment.time,
+                status: { $in: ACTIVE },
+            });
+            if (clash) return res.status(409).json({ message: "Ye slot pehle se booked hai" });
+        }
+
+        await appointment.save();
+        await appointment.populate(POPULATE);
+        res.json({ appointment });
+    } catch {
+        res.status(400).json({ message: "Invalid appointment id" });
+    }
+};

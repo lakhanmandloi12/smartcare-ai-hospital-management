@@ -1,0 +1,178 @@
+/* Dark mode: index.css ke purane hardcoded rang ko override karta hai */
+
+[data-bs-theme="dark"] body {
+    background: var(--app-bg);
+    color: var(--app-text);
+}
+
+/* ===== Sidebar, topbar ===== */
+[data-bs-theme="dark"] .sidebar,
+[data-bs-theme="dark"] .topbar {
+    background: var(--app-surface);
+    border-color: var(--app-border);
+}
+
+[data-bs-theme="dark"] .brand h5,
+[data-bs-theme="dark"] .user-profile {
+    color: var(--app-text);
+}
+
+[data-bs-theme="dark"] .brand small,
+[data-bs-theme="dark"] .menu-title,
+[data-bs-theme="dark"] .user-profile small,
+[data-bs-theme="dark"] .notification-btn {
+    color: var(--app-muted);
+}
+
+[data-bs-theme="dark"] .sidebar-link {
+    color: var(--app-muted);
+}
+
+[data-bs-theme="dark"] .sidebar-link:hover {
+    background: var(--app-primary-hover);
+    color: var(--app-primary);
+}
+
+[data-bs-theme="dark"] .sidebar-link.active {
+    background: var(--app-primary-soft);
+    color: var(--app-primary);
+}
+
+[data-bs-theme="dark"] .ai-link {
+    color: #c4b5fd;
+}
+
+[data-bs-theme="dark"] .user-avatar {
+    background: var(--app-primary-soft);
+    color: var(--app-primary);
+}
+
+/* ===== Cards ===== */
+[data-bs-theme="dark"] .stat-card,
+[data-bs-theme="dark"] .dashboard-card,
+[data-bs-theme="dark"] .doctor-card,
+[data-bs-theme="dark"] .prescription-card,
+[data-bs-theme="dark"] .ai-chat-card {
+    background: var(--app-surface);
+    border-color: var(--app-border);
+    color: var(--app-text);
+}
+
+[data-bs-theme="dark"] .stat-title,
+[data-bs-theme="dark"] .doctor-info small,
+[data-bs-theme="dark"] .ai-feature small {
+    color: var(--app-muted);
+}
+
+[data-bs-theme="dark"] .stat-icon,
+[data-bs-theme="dark"] .table-avatar,
+[data-bs-theme="dark"] .large-avatar,
+[data-bs-theme="dark"] .prescription-icon,
+[data-bs-theme="dark"] .diagnosis-badge {
+    background: var(--app-primary-soft);
+    color: var(--app-primary);
+}
+
+[data-bs-theme="dark"] .doctor-avatar,
+[data-bs-theme="dark"] .ai-message-icon,
+[data-bs-theme="dark"] .ai-feature>i {
+    background: var(--app-violet-soft);
+    color: var(--app-violet);
+}
+
+[data-bs-theme="dark"] .appointment-row,
+[data-bs-theme="dark"] .doctor-info,
+[data-bs-theme="dark"] .prescription-footer,
+[data-bs-theme="dark"] .ai-feature,
+[data-bs-theme="dark"] .chat-input {
+    border-color: var(--app-border);
+}
+
+[data-bs-theme="dark"] .appointment-time {
+    color: var(--app-primary);
+}
+
+[data-bs-theme="dark"] .prescription-footer {
+    color: var(--app-muted);
+}
+
+/* ===== Tables ===== */
+[data-bs-theme="dark"] .table {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--app-text);
+    --bs-table-border-color: var(--app-border);
+}
+
+[data-bs-theme="dark"] .table thead th {
+    color: var(--app-muted);
+    border-color: var(--app-border);
+    background: transparent;
+}
+
+[data-bs-theme="dark"] .table tbody td {
+    color: var(--app-text);
+    border-color: var(--app-border-soft);
+    background: transparent;
+}
+
+/* ===== Status badges ===== */
+[data-bs-theme="dark"] .active-status {
+    background: var(--app-success-bg);
+    color: var(--app-success-text);
+}
+
+[data-bs-theme="dark"] .inactive-status {
+    background: var(--app-neutral-bg);
+    color: var(--app-neutral-text);
+}
+
+[data-bs-theme="dark"] .pending-status {
+    background: var(--app-warn-bg);
+    color: var(--app-warn-text);
+}
+
+/* ===== AI chat ===== */
+[data-bs-theme="dark"] .chat-body {
+    background: var(--app-bg-soft);
+}
+
+[data-bs-theme="dark"] .ai-message {
+    background: var(--app-surface);
+    color: var(--app-text);
+}
+
+[data-bs-theme="dark"] .ai-message.user {
+    background: var(--app-primary);
+    color: #0b1220;
+}
+
+[data-bs-theme="dark"] .ai-disclaimer {
+    background: var(--app-notice-bg);
+    color: var(--app-notice-text);
+    border-color: var(--app-notice-border);
+}
+
+/* ===== Inputs / search ===== */
+[data-bs-theme="dark"] .search-box .input-group-text,
+[data-bs-theme="dark"] .form-control,
+[data-bs-theme="dark"] .form-select {
+    background-color: var(--app-soft);
+    border-color: var(--app-border);
+    color: var(--app-text);
+}
+
+[data-bs-theme="dark"] .form-control:focus,
+[data-bs-theme="dark"] .form-select:focus {
+    background-color: var(--app-soft);
+    color: var(--app-text);
+}
+
+[data-bs-theme="dark"] .btn-light {
+    background: var(--app-soft);
+    border-color: var(--app-border);
+    color: var(--app-text);
+}
+
+[data-bs-theme="dark"] .btn-light:hover {
+    background: var(--app-border);
+}

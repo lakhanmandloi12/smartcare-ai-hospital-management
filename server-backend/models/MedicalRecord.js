@@ -9,6 +9,7 @@ const recordSchema = new mongoose.Schema(
         description: { type: String, trim: true },
         medicines: [{ name: String, dosage: String, duration: String }], // prescription ke liye
         date: { type: Date, default: Date.now },
+        diagnosis: { type: String, trim: true },
     },
     { timestamps: true }
 );

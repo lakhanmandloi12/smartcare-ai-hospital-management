@@ -20,7 +20,8 @@ function PatientProfile() {
     const [form, setForm] = useState(emptyForm);
     const [busy, setBusy] = useState(false);
     const [notice, setNotice] = useState(null);
-    const [dark, setDark] = useState(getTheme() === "dark");
+    // lazy init: getTheme() har render par nahi chalega
+    const [dark, setDark] = useState(() => getTheme() === "dark");
 
     useEffect(() => {
         if (!user) return;
@@ -41,11 +42,15 @@ function PatientProfile() {
         return () => clearTimeout(t);
     }, [notice]);
 
+    // Theme ko hamesha state ke saath sync rakho (poore app par apply hota hai)
+    useEffect(() => {
+        applyTheme(dark ? "dark" : "light");
+    }, [dark]);
+
     const onChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
     function toggleTheme(e) {
         setDark(e.target.checked);
-        applyTheme(e.target.checked ? "dark" : "light");
     }
 
     async function save(e) {
@@ -180,25 +185,7 @@ function PatientProfile() {
                         </p>
                     </section>
 
-                    <section className="pt-card">
-                        <div className="pt-switch-row">
-                            <div>
-                                <strong>Dark mode</strong>
-                                <small>Applies across the whole app.</small>
-                            </div>
-                            <div className="form-check form-switch m-0">
-                                <input
-                                    className="form-check-input"
-                                    type="checkbox"
-                                    role="switch"
-                                    id="darkMode"
-                                    aria-label="Dark mode"
-                                    checked={dark}
-                                    onChange={toggleTheme}
-                                />
-                            </div>
-                        </div>
-                    </section>
+
                 </div>
             </div>
         </>

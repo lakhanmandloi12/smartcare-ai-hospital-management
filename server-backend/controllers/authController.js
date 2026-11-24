@@ -83,7 +83,8 @@ exports.login = async (req, res) => {
         const user = await User.findOne({ email }).select("+password");
         if (!user || !user.password || !(await bcrypt.compare(password, user.password)))
             return res.status(401).json({ message: "Email ya password galat hai" });
-
+        if (user.isActive === false)
+            return res.status(403).json({ message: "Your account has been deactivated. Please contact the hospital." });
         if (user.role === "doctor" && !user.isApproved)
             return res.status(403).json({ message: PENDING_MSG });
 

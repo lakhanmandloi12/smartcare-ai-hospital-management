@@ -1,18 +1,4 @@
-/* ===== Page shell: Sidebar | (Topbar + content) ===== */
-.settings-shell {
-    display: flex;
-    min-height: 100vh;
-    background: #f4f7f9;
-}
-
-.settings-main {
-    flex: 1;
-    min-width: 0;
-    /* flex child ko overflow hone se roke */
-    display: flex;
-    flex-direction: column;
-}
-
+/* ===== Page content ===== */
 .settings-content {
     padding: 28px 24px 40px;
     max-width: 1200px;
@@ -26,9 +12,11 @@
 
 /* ===== Cards ===== */
 .settings-card {
-    border: 1px solid #e3eaf0;
+    background: var(--app-surface);
+    color: var(--app-text);
+    border: 1px solid var(--app-border);
     border-radius: 16px;
-    box-shadow: 0 1px 3px rgba(20, 48, 61, 0.05);
+    box-shadow: 0 1px 3px var(--app-shadow);
 }
 
 .settings-card .form-label {
@@ -43,7 +31,7 @@
 
 .settings-card .form-control:focus {
     border-color: #0e7c86;
-    box-shadow: 0 0 0 0.2rem rgba(14, 124, 134, 0.15);
+    box-shadow: 0 0 0 0.2rem rgba(14, 124, 134, 0.18);
 }
 
 .settings-card .btn {
@@ -55,6 +43,7 @@
 .settings-card .btn-primary {
     background: #0e7c86;
     border-color: #0e7c86;
+    color: #fff;
 }
 
 .settings-card .btn-primary:hover {
@@ -86,7 +75,7 @@
     justify-content: space-between;
     gap: 16px;
     padding: 14px 0;
-    border-bottom: 1px solid #edf2f5;
+    border-bottom: 1px solid var(--app-border-soft);
 }
 
 .pref-row:last-of-type {
@@ -100,7 +89,7 @@
 
 .pref-hint {
     font-size: 0.8rem;
-    color: #6b8190;
+    color: var(--app-muted);
 }
 
 .pref-row .form-check-input {
@@ -117,18 +106,18 @@
 .pref-note {
     margin: 8px 0 0;
     font-size: 0.78rem;
-    color: #6b8190;
+    color: var(--app-muted);
 }
 
 /* ===== Side summary card ===== */
-.brand-icon {
+.settings-brand-icon {
     display: grid;
     place-items: center;
     width: 72px;
     height: 72px;
     margin: 0 auto;
     border-radius: 20px;
-    background: #e4f4f5;
+    background: var(--app-accent-soft);
     color: #0e7c86;
     font-size: 2rem;
 }
@@ -137,7 +126,7 @@
     list-style: none;
     margin: 20px 0 0;
     padding: 16px 0 0;
-    border-top: 1px solid #edf2f5;
+    border-top: 1px solid var(--app-border-soft);
     text-align: left;
 }
 
@@ -157,38 +146,6 @@
 .brand-details span {
     min-width: 0;
     overflow-wrap: anywhere;
-}
-
-/* ===== Dark mode (Bootstrap data-bs-theme) ===== */
-[data-bs-theme="dark"] .settings-shell {
-    background: #0f1a20;
-}
-
-[data-bs-theme="dark"] .settings-card {
-    background: #16252d;
-    border-color: #243743;
-}
-
-[data-bs-theme="dark"] .pref-row,
-[data-bs-theme="dark"] .brand-details {
-    border-color: #243743;
-}
-
-[data-bs-theme="dark"] .brand-icon {
-    background: #1b3a40;
-}
-
-[data-bs-theme="dark"] .topbar {
-    --tb-bg: #16252d;
-    --tb-border: #243743;
-    --tb-text: #e6eef2;
-    --tb-muted: #8ea3b0;
-    --tb-hover: #1d313b;
-    --tb-accent-soft: #1b3a40;
-}
-
-[data-bs-theme="dark"] .profile-menu-id .badge {
-    background: #16252d !important;
 }
 
 /* ===== Mobile ===== */

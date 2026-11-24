@@ -53,10 +53,10 @@ function Prescriptions() {
                             </p>
                         </div>
 
-                        <button className="btn btn-primary">
+                        {/* <button className="btn btn-primary">
                             <i className="bi bi-plus-lg me-2"></i>
                             Create Prescription
-                        </button>
+                        </button> */}
 
                     </div>
 
