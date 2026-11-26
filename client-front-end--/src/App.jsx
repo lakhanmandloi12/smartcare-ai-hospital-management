@@ -22,7 +22,7 @@ import PatientDashboard from "./pages/PatientDashboard";
 import PatientAppointments from "./pages/PatientAppointments";
 import PatientRecords from "./pages/PatientRecords";
 import PatientProfile from "./pages/PatientProfile";
-import PatientAI from "./pages/PatientAi";
+import PatientAI from "./pages/PatientAI";
 
 import DoctorLayout from "./doctor/DoctorLayout";
 import DoctorDashboard from "./doctor/DoctorDashboard";
