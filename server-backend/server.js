@@ -21,7 +21,7 @@ app.use(async (req, res, next) => {
         next();
     } catch (err) {
         console.error("Mongo error:", err.message);
-        res.status(500).json({ message: "Database connection failed" });
+        res.status(500).json({ message: "Database connection failed", error: err.message });
     }
 });
 
