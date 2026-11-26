@@ -1,0 +1,315 @@
+/* ================= Theme variables (poore app ke liye) ================= */
+:root,
+[data-bs-theme="light"] {
+    --app-bg: #f5f7fb;
+    --app-bg-soft: #f8fafc;
+    --app-surface: #ffffff;
+    --app-soft: #eef2f7;
+    --app-hover: #f3f7f9;
+    --app-accent-soft: #e4f4f5;
+    --app-border: #e3eaf0;
+    --app-border-soft: #eef0f4;
+    --app-text: #14303d;
+    --app-text-soft: #334155;
+    --app-muted: #6b8190;
+    --app-faint: #94a3b8;
+
+    --app-primary: #2563eb;
+    --app-primary-soft: #eaf1ff;
+    --app-primary-hover: #f0f5ff;
+    --app-violet: #4f46e5;
+    --app-violet-soft: #eef2ff;
+
+    --app-success-bg: #e8f8ef;
+    --app-success-text: #159447;
+    --app-warn-bg: #fff5d9;
+    --app-warn-text: #c78a00;
+    --app-neutral-bg: #f1f3f5;
+    --app-neutral-text: #718096;
+    --app-notice-bg: #fff8e6;
+    --app-notice-text: #8a6500;
+    --app-notice-border: #f8df9a;
+
+    --app-shadow: rgba(31, 41, 55, 0.08);
+}
+
+[data-bs-theme="dark"] {
+    --app-bg: #0f1720;
+    --app-bg-soft: #131d28;
+    --app-surface: #17212c;
+    --app-soft: #1f2c3a;
+    --app-hover: #1f2c3a;
+    --app-accent-soft: #14383d;
+    --app-border: #2a3644;
+    --app-border-soft: #243140;
+    --app-text: #e6edf3;
+    --app-text-soft: #cbd5e1;
+    --app-muted: #9aa9b8;
+    --app-faint: #7b8a9a;
+
+    --app-primary: #60a5fa;
+    --app-primary-soft: #1b2d47;
+    --app-primary-hover: #1b2d47;
+    --app-violet: #a5b4fc;
+    --app-violet-soft: #25274a;
+
+    --app-success-bg: #12352a;
+    --app-success-text: #4ade80;
+    --app-warn-bg: #3a2f10;
+    --app-warn-text: #fbbf24;
+    --app-neutral-bg: #26323f;
+    --app-neutral-text: #9aa9b8;
+    --app-notice-bg: #3a2f10;
+    --app-notice-text: #fbbf24;
+    --app-notice-border: #5c4a14;
+
+    --app-shadow: rgba(0, 0, 0, 0.4);
+    color-scheme: dark;
+}
+
+body {
+    background: var(--app-bg);
+    color: var(--app-text);
+    transition: background 0.2s, color 0.2s;
+}
+
+/* ================= App-wide overrides =================
+   Ye un components ke liye hain jinki apni CSS me hardcoded colors the
+   (Dashboard, Sidebar, Topbar). Class names apne project ke hisaab se check karo.
+   Behtar: un CSS files me bhi #fff / white ko var(--app-surface) se replace kar do,
+   phir ye block hata sakte ho. */
+
+.app-layout,
+.main-content,
+.dashboard-content {
+    background: var(--app-bg);
+    color: var(--app-text);
+}
+
+.sidebar,
+.topbar,
+.dashboard-card,
+.stat-card {
+    background: var(--app-surface);
+    color: var(--app-text);
+    border-color: var(--app-border);
+}
+
+.appointment-row {
+    color: var(--app-text);
+    border-color: var(--app-border-soft);
+}
+
+.appointment-row:hover {
+    background: var(--app-hover);
+}
+
+.doctor-avatar,
+.appointment-time {
+    background: var(--app-primary-soft);
+    color: var(--app-primary);
+}
+
+.text-muted,
+.pt-muted {
+    color: var(--app-muted) !important;
+}
+
+.sidebar a,
+.topbar a {
+    color: var(--app-text-soft);
+}
+
+html[data-bs-theme="dark"] .pt-card {
+    background: var(--app-surface);
+    color: var(--app-text);
+    border-color: var(--app-border);
+}
+
+html[data-bs-theme="dark"] .pt-card input,
+html[data-bs-theme="dark"] .pt-card select,
+html[data-bs-theme="dark"] .pt-card textarea {
+    background: var(--app-bg-soft);
+    color: var(--app-text);
+    border-color: var(--app-border);
+}
+
+html[data-bs-theme="dark"] .pt-card input:disabled {
+    background: var(--app-soft);
+    color: var(--app-muted);
+}
+
+html[data-bs-theme="dark"] .pt-header h2,
+html[data-bs-theme="dark"] .pt-card label,
+html[data-bs-theme="dark"] .pt-card h5 {
+    color: var(--app-text);
+}
+
+html[data-bs-theme="dark"] .pt-muted,
+html[data-bs-theme="dark"] .pt-header p,
+html[data-bs-theme="dark"] .pt-switch-row small {
+    color: var(--app-muted);
+}
+
+/* ================= Bootstrap ko app ke dark colours se jodo ================= */
+[data-bs-theme="dark"] {
+    --bs-body-bg: var(--app-surface);
+    /* cards, modals, inputs, tables */
+    --bs-body-color: var(--app-text);
+    --bs-secondary-color: var(--app-muted);
+    /* .text-muted */
+    --bs-border-color: var(--app-border);
+    --bs-tertiary-bg: var(--app-soft);
+    /* input-group-text, etc. */
+    --bs-secondary-bg: var(--app-soft);
+    --bs-emphasis-color: #ffffff;
+    --bs-link-color: var(--app-primary);
+}
+
+/* body ka apna background (cards se alag, thoda gehra) */
+body {
+    background: var(--app-bg);
+    color: var(--app-text);
+}
+
+[data-bs-theme="dark"] .bg-white {
+    background-color: var(--app-surface) !important;
+}
+
+[data-bs-theme="dark"] .bg-light {
+    background-color: var(--app-soft) !important;
+}
+
+[data-bs-theme="dark"] .btn-light {
+    --bs-btn-color: var(--app-text);
+    --bs-btn-bg: var(--app-soft);
+    --bs-btn-border-color: var(--app-border);
+    --bs-btn-hover-color: var(--app-text);
+    --bs-btn-hover-bg: var(--app-border);
+    --bs-btn-hover-border-color: var(--app-border);
+    --bs-btn-active-color: var(--app-text);
+    --bs-btn-active-bg: var(--app-border);
+    --bs-btn-active-border-color: var(--app-border);
+}
+
+[data-bs-theme="dark"] .form-control::placeholder {
+    color: var(--app-faint);
+}
+
+[data-bs-theme="dark"] .modal-content {
+    border: 1px solid var(--app-border);
+}
+
+/* ================= Theme badalte waqt smooth fade ================= */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+    transition: background-color 0.3s ease, color 0.3s ease,
+        border-color 0.3s ease, box-shadow 0.3s ease, fill 0.3s ease !important;
+}
+
+/* ================= Sun / moon toggle ================= */
+.theme-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60px;
+    height: 32px;
+    padding: 0 9px;
+    border: 1px solid var(--app-border);
+    border-radius: 999px;
+    background: linear-gradient(135deg, #dbeafe, #fef3c7);
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s;
+}
+
+[data-bs-theme="dark"] .theme-toggle {
+    background: linear-gradient(135deg, #1e293b, #312e81);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--app-primary);
+    outline-offset: 3px;
+}
+
+/* track ke andar halke icons */
+.theme-toggle-bg-sun,
+.theme-toggle-bg-moon {
+    font-size: 13px;
+    opacity: 0.55;
+}
+
+.theme-toggle-bg-sun {
+    color: #f59e0b;
+}
+
+.theme-toggle-bg-moon {
+    color: #94a3b8;
+}
+
+/* sarakne wala gola */
+.theme-toggle-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.3);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s;
+}
+
+[data-bs-theme="dark"] .theme-toggle-knob {
+    transform: translateX(28px);
+    background: #0f172a;
+}
+
+.theme-toggle-knob i {
+    grid-area: 1 / 1;
+    font-size: 13px;
+    transition: opacity 0.25s, transform 0.3s;
+}
+
+.theme-toggle-sun {
+    color: #f59e0b;
+    opacity: 1;
+}
+
+.theme-toggle-moon {
+    color: #c7d2fe;
+    opacity: 0;
+    transform: rotate(-40deg) scale(0.6);
+}
+
+[data-bs-theme="dark"] .theme-toggle-sun {
+    opacity: 0;
+    transform: rotate(40deg) scale(0.6);
+}
+
+[data-bs-theme="dark"] .theme-toggle-moon {
+    opacity: 1;
+    transform: none;
+}
+
+/* fade ke waqt bhi knob ki apni animation chalti rahe */
+.theme-transition .theme-toggle-knob {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s !important;
+}
+
+.theme-transition .theme-toggle-knob i {
+    transition: opacity 0.25s, transform 0.3s !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .theme-toggle,
+    .theme-toggle-knob,
+    .theme-toggle-knob i {
+        transition: none;
+    }
+}

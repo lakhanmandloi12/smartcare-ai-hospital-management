@@ -1,0 +1,211 @@
+/* Doctor portal: admin ke layout classes (App.css) reuse hoti hain, ye sirf extra cheezein hain */
+
+.dr-badge {
+    display: inline-block;
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+    white-space: nowrap;
+}
+
+.dr-badge.pending {
+    background: var(--app-warn-bg);
+    color: var(--app-warn-text);
+}
+
+.dr-badge.confirmed,
+.dr-badge.prescription {
+    background: var(--app-primary-soft);
+    color: var(--app-primary);
+}
+
+.dr-badge.completed {
+    background: var(--app-success-bg);
+    color: var(--app-success-text);
+}
+
+.dr-badge.cancelled {
+    background: rgba(239, 68, 68, 0.14);
+    color: #ef4444;
+}
+
+.dr-badge.report {
+    background: var(--app-violet-soft);
+    color: var(--app-violet);
+}
+
+.dr-badge.other {
+    background: var(--app-neutral-bg);
+    color: var(--app-neutral-text);
+}
+
+.dr-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.dr-tabs button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--app-border);
+    border-radius: 999px;
+    background: var(--app-surface);
+    color: var(--app-muted);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.dr-tabs button span {
+    padding: 0 7px;
+    border-radius: 999px;
+    background: var(--app-soft);
+    font-size: 12px;
+}
+
+.dr-tabs button.active {
+    background: var(--app-primary);
+    border-color: var(--app-primary);
+    color: #fff;
+}
+
+[data-bs-theme="dark"] .dr-tabs button.active {
+    color: #0b1220;
+}
+
+.dr-tabs button.active span {
+    background: rgba(255, 255, 255, 0.25);
+    color: inherit;
+}
+
+.dr-time {
+    min-width: 76px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--app-primary);
+}
+
+.dr-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.dr-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 36px 0;
+    text-align: center;
+    color: var(--app-muted);
+}
+
+.dr-empty i {
+    font-size: 2.2rem;
+    color: var(--app-primary);
+}
+
+.dr-empty p {
+    margin: 0;
+}
+
+.dr-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+.dr-alert span {
+    flex: 1;
+}
+
+.dr-alert.success {
+    background: var(--app-success-bg);
+    color: var(--app-success-text);
+}
+
+.dr-alert.error {
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+}
+
+.dr-alert button {
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-weight: 700;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.dr-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.dr-med-row {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1fr auto;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.dr-records {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dr-records>li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--app-border-soft);
+}
+
+.dr-records>li:last-child {
+    border-bottom: 0;
+}
+
+.dr-meds {
+    margin: 8px 0 0;
+    padding-left: 18px;
+    color: var(--app-muted);
+    font-size: 13px;
+}
+
+.dr-big-avatar {
+    display: grid;
+    place-items: center;
+    width: 76px;
+    height: 76px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    color: #fff;
+    font-size: 1.9rem;
+    font-weight: 700;
+}
+
+@media (max-width: 960px) {
+    .dr-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .dr-med-row {
+        grid-template-columns: 1fr 1fr;
+    }
+}

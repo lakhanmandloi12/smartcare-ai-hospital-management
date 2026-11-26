@@ -1,0 +1,577 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&display=swap");
+
+.sc-login {
+    --sc-deep: #0a3640;
+    --sc-teal: #0e8f8a;
+    --sc-teal-dark: #0b726e;
+    --sc-mint: #bfe6df;
+    --sc-ink: #10262b;
+    --sc-muted: #587076;
+    --sc-line: #d3e1e2;
+    --sc-bg: #f6faf9;
+    --sc-danger: #b83a28;
+    --sc-danger-bg: #fcebe8;
+
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    font-family: "Figtree", system-ui, sans-serif;
+    color: var(--sc-ink);
+    background: var(--sc-bg);
+}
+
+.sc-login *,
+.sc-login *::before,
+.sc-login *::after {
+    box-sizing: border-box;
+}
+
+/* ---------- Brand panel ---------- */
+.sc-hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--sc-deep);
+    color: #fff;
+    padding: 40px 48px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sc-hero-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--sc-mint);
+}
+
+.sc-hero-top i {
+    font-size: 1.5rem;
+}
+
+.sc-hero-body {
+    margin-top: 12vh;
+    max-width: 400px;
+}
+
+.sc-hero-body h1 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 3.2vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin: 0 0 16px;
+}
+
+.sc-hero-body p {
+    margin: 0;
+    color: #b5d3d1;
+    line-height: 1.6;
+    max-width: 36ch;
+}
+
+/* ECG line: ek baar draw hoti hai */
+.sc-ecg {
+    display: block;
+    margin: auto -48px;
+    width: calc(100% + 96px);
+    height: 120px;
+}
+
+.sc-ecg path {
+    fill: none;
+    stroke: var(--sc-teal);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+    animation: sc-draw 2.6s ease-out 0.2s both;
+}
+
+@keyframes sc-draw {
+    from {
+        stroke-dashoffset: 1;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.sc-hero-points {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+}
+
+.sc-hero-points li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #cfe5e3;
+}
+
+.sc-hero-points i {
+    color: var(--sc-mint);
+    font-size: 1.1rem;
+}
+
+/* ---------- Form side ---------- */
+.sc-panel {
+    display: grid;
+    place-items: center;
+    padding: 40px 24px;
+}
+
+.sc-box {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Sign in / Create account toggle */
+.sc-tabs {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #e6efee;
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 32px;
+}
+
+.sc-tab-indicator {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    background: #fff;
+    border-radius: 9px;
+    box-shadow: 0 1px 3px rgba(10, 54, 64, 0.15);
+    transition: transform 0.25s ease;
+}
+
+.sc-tabs[data-mode="register"] .sc-tab-indicator {
+    transform: translateX(100%);
+}
+
+.sc-tab {
+    position: relative;
+    z-index: 1;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: 10px;
+    font: inherit;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--sc-muted);
+    border-radius: 9px;
+    transition: color 0.2s;
+}
+
+.sc-tab.active {
+    color: var(--sc-ink);
+}
+
+.sc-tab:focus-visible {
+    outline: 2px solid var(--sc-teal);
+    outline-offset: 2px;
+}
+
+.sc-title {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+    margin: 0 0 6px;
+}
+
+.sc-sub {
+    margin: 0 0 26px;
+    color: var(--sc-muted);
+    line-height: 1.5;
+}
+
+.sc-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sc-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sc-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.sc-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border: 1.5px solid var(--sc-line);
+    border-radius: 10px;
+    padding: 0 14px;
+    color: var(--sc-muted);
+    transition: border-color 0.15s, box-shadow 0.15s, color 0.15s;
+}
+
+.sc-input:focus-within {
+    border-color: var(--sc-teal);
+    box-shadow: 0 0 0 3px rgba(14, 143, 138, 0.18);
+    color: var(--sc-teal);
+}
+
+.sc-input>i {
+    font-size: 1.1rem;
+}
+
+.sc-input input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    padding: 13px 0;
+    font: inherit;
+    font-size: 1rem;
+    color: var(--sc-ink);
+}
+
+.sc-input input::placeholder {
+    color: #93a8ab;
+}
+
+.sc-eye {
+    border: 0;
+    background: transparent;
+    color: var(--sc-muted);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 4px;
+    border-radius: 6px;
+}
+
+.sc-eye:hover {
+    color: var(--sc-ink);
+}
+
+.sc-eye:focus-visible {
+    outline: 2px solid var(--sc-teal);
+}
+
+/* Password strength */
+.sc-strength {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+}
+
+.sc-strength i {
+    flex: 1;
+    max-width: 56px;
+    height: 4px;
+    border-radius: 4px;
+    background: var(--sc-line);
+}
+
+.sc-strength em {
+    font-style: normal;
+    font-size: 0.8rem;
+    color: var(--sc-muted);
+    margin-left: 4px;
+}
+
+.sc-strength[data-level="1"] i:nth-child(-n+1) {
+    background: var(--sc-danger);
+}
+
+.sc-strength[data-level="2"] i:nth-child(-n+2) {
+    background: #c98a12;
+}
+
+.sc-strength[data-level="3"] i:nth-child(-n+3) {
+    background: var(--sc-teal);
+}
+
+.sc-btn {
+    margin-top: 4px;
+    width: 100%;
+    padding: 14px;
+    border: 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--sc-teal);
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.sc-btn:hover:not(:disabled) {
+    background: var(--sc-teal-dark);
+}
+
+.sc-btn:focus-visible {
+    outline: 3px solid rgba(14, 143, 138, 0.4);
+    outline-offset: 2px;
+}
+
+.sc-btn:disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+}
+
+.sc-error {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    background: var(--sc-danger-bg);
+    color: var(--sc-danger);
+    border: 1px solid #f1c4bc;
+    border-radius: 10px;
+    padding: 11px 14px;
+    font-size: 0.925rem;
+    line-height: 1.4;
+}
+
+.sc-error i {
+    margin-top: 2px;
+}
+
+.sc-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 22px 0;
+    color: var(--sc-muted);
+    font-size: 0.875rem;
+}
+
+.sc-divider::before,
+.sc-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--sc-line);
+}
+
+.sc-google {
+    display: flex;
+    justify-content: center;
+    min-height: 44px;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 860px) {
+    .sc-login {
+        grid-template-columns: 1fr;
+    }
+
+    .sc-hero {
+        padding: 20px 24px 8px;
+    }
+
+    .sc-hero-body,
+    .sc-hero-points {
+        display: none;
+    }
+
+    .sc-ecg {
+        margin: 10px -24px 0;
+        width: calc(100% + 48px);
+        height: 48px;
+    }
+
+    .sc-panel {
+        align-items: start;
+        padding-top: 28px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sc-ecg path {
+        animation: none;
+    }
+
+    .sc-tab-indicator {
+        transition: none;
+    }
+}
+
+/* ---------- Tabs ab links bhi hain ---------- */
+.sc-tabs>.sc-tab {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+span.sc-tab {
+    cursor: default;
+}
+
+a.sc-btn {
+    text-decoration: none;
+}
+
+/* ---------- Register page ---------- */
+.sc-login--register .sc-panel {
+    align-items: start;
+    padding-top: 48px;
+}
+
+.sc-login--register .sc-box {
+    max-width: 460px;
+}
+
+.sc-login--register .sc-title {
+    font-size: 1.75rem;
+}
+
+.sc-login--register .sc-sub {
+    margin-bottom: 20px;
+}
+
+.sc-roles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.sc-role {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 8px;
+    background: #fff;
+    color: var(--sc-muted);
+    border: 1.5px solid var(--sc-line);
+    border-radius: 12px;
+    font: inherit;
+    font-weight: 600;
+    font-size: 0.925rem;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.sc-role i {
+    font-size: 1.4rem;
+}
+
+.sc-role:hover {
+    border-color: var(--sc-teal);
+}
+
+.sc-role.active {
+    border-color: var(--sc-teal);
+    background: #e9f6f4;
+    color: var(--sc-teal-dark);
+    box-shadow: 0 0 0 3px rgba(14, 143, 138, 0.14);
+}
+
+.sc-role:focus-visible {
+    outline: 2px solid var(--sc-teal);
+    outline-offset: 2px;
+}
+
+.sc-role-note {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin: 14px 0 20px;
+    padding: 10px 12px;
+    background: #eef6f5;
+    border-radius: 10px;
+    color: var(--sc-muted);
+    font-size: 0.875rem;
+    line-height: 1.45;
+}
+
+.sc-role-note i {
+    color: var(--sc-teal);
+    margin-top: 2px;
+}
+
+.sc-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.sc-input select {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    padding: 13px 0;
+    font: inherit;
+    font-size: 1rem;
+    color: var(--sc-ink);
+    cursor: pointer;
+}
+
+.sc-input select:invalid {
+    color: #93a8ab;
+}
+
+.sc-done {
+    text-align: center;
+    padding-top: 8px;
+}
+
+.sc-done>i {
+    font-size: 3.5rem;
+    color: var(--sc-teal);
+}
+
+.sc-done .sc-title {
+    margin-top: 8px;
+}
+
+.sc-done .sc-btn {
+    margin-top: 8px;
+}
+
+@media (max-width: 520px) {
+    .sc-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.sc-success {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    background: #e9f6f4;
+    color: var(--sc-teal-dark);
+    border: 1px solid var(--sc-mint);
+    border-radius: 10px;
+    padding: 11px 14px;
+    font-size: 0.925rem;
+    line-height: 1.4;
+}
+
+.sc-success i {
+    margin-top: 2px;
+}
