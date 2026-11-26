@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 
-// DB connection (har request pe reuse hoga)
+// DB connection (har request pe reuse hoga)    
 async function connectDB() {
     if (mongoose.connection.readyState === 1) return;
     await mongoose.connect(process.env.MONGO_URI);
